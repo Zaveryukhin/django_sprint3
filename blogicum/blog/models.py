@@ -81,12 +81,12 @@ class Post(models.Model):
     )
     created_at = models.DateTimeField(
         auto_now_add=True,
-        verbose_name='Дата публикации поста'
+        verbose_name='Добавлено'
     )
 
     class Meta:
-        verbose_name = 'пост'
-        verbose_name_plural = 'посты'
+        verbose_name = 'публикация'
+        verbose_name_plural = 'Публикации'
 
     def __str__(self):
         return self.title
