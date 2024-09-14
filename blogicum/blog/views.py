@@ -1,12 +1,17 @@
 from django.shortcuts import render
+import datetime
 
-
+from .models import Post, Category, Location
 
 
 def index(request):
     template = 'blog/index.html'
-    rev_posts = reversed(posts)
-    context = {'rev_posts': rev_posts}
+    post_list = Post.objects.filter(
+        pub_date__lt=datetime.datetime.now(),
+        is_published=True,
+        category__is_published=True
+    ).order_by('-pub_date')[0:5]
+    context = {'post_list': post_list}
     return render(request, template, context)
 
 
